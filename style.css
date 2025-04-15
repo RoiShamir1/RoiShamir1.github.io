@@ -1,6 +1,6 @@
 /*Roi Shamir 212052047, Yuval Madmon 209377423*/
 body {
-  text-align: center;
+  text-align: center; /* רספונסיביות */
   font-family: sans-serif;
   background-color: #f0f0f0;
   margin: 0;
@@ -33,7 +33,7 @@ div:nth-of-type(2),
 div:nth-of-type(4) {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  /* רספונסיביות */
   gap: 10px;
 }
 
@@ -46,7 +46,7 @@ div:nth-of-type(4) {
 
 input[type="text"] {
   padding: 10px;
-  width: 200px;
+  width: 200px; /* רספונסיביות */
   font-size: 16px;
   margin-top: 10px;
 }
@@ -75,6 +75,8 @@ button {
   font-weight: bold;
 }
 
+
+/* בלחיצה על כפתור */
 .selected {
   transform: scale(1.2);
   background-color: #4caf50;

@@ -1,8 +1,10 @@
 // Roi Shamir 212052047, Yuval Madmon 209377423
 document.addEventListener("DOMContentLoaded", () => {
+  // אתחול בסיס ברירת מחדל
   let fromBase = 10;
   let toBase = 10;
 
+  // פונקציה המאחתלת את הבסיס בעקבות הלחיצה
   const buttons = document.querySelectorAll("button");
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //let errorMessage = "";
 
+  // ערך הבסיס המומר והממיר בקטן
   function toSubscript(num) {
     const subscriptDigits = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"];
     return num
@@ -36,13 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
   }
 
+  // בלחיצה על כפתור הכפתור מקבל את הקלאס selected
   const buttonClicked = document.querySelectorAll("button");
-
   buttonClicked.forEach((btn) => {
     btn.addEventListener("click", () => {
       const base = btn.innerText;
       const parent = btn.parentElement.id;
-  
+
       if (parent === "from-section") {
         fromBase = getBaseFromBase(base);
         highlightGroupButton(btn, "from-section");
@@ -52,13 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-  
+
   function highlightGroupButton(clickedButton, groupId) {
     const groupButtons = document.querySelectorAll(`#${groupId} button`);
     groupButtons.forEach((btn) => btn.classList.remove("selected"));
     clickedButton.classList.add("selected");
   }
 
+  // פונקציה לתקינות הקלט
   function isValidInput(input, base) {
     const patterns = {
       2: /^[01]+$/,
@@ -69,12 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return patterns[base].test(input);
   }
 
+  // פונקציית ההמרה עצמה
   document
     .querySelector('input[type="submit"]')
     .addEventListener("click", () => {
       const input = document.getElementById("number").value.trim();
       const resultElement = document.getElementById("result");
 
+      // במידה והקלט לא תקין
       if (!isValidInput(input, fromBase)) {
         //errorMessage = "Number is not valid, try again";
         alert("Number is not valid, try again");
@@ -88,11 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const convertedValue = decimalValue.toString(toBase).toUpperCase();
-        //resultElement.textContent = `${input} (base ${fromBase}) = ${convertedValue} (base ${toBase})`;
+
         resultElement.textContent = `${input}${toSubscript(
           fromBase
         )} = ${convertedValue}${toSubscript(toBase)}`;
-        //resultField.textContent = Result: ${input.toUpperCase()}${toSubscript(fromBase)} = ${converted}${toSubscript(toBase)};
 
         document.getElementById("number").value = "";
       } catch (err) {
